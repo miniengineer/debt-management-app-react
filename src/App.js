@@ -1,25 +1,57 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      message: 'My Todo List',
+      newTodo: '',
+      todos: [{
+        title: 'buy coffee',
+        done: false
+      }, {
+        title: 'learn react',
+        done: false
+      }]
+    };
+  }
+
+  formSubmitted(event) {
+    event.preventDefault();
+
+    this.setState({
+      newTodo: '',
+      todos: [...this.state.todos, {
+        title: this.state.newTodo,
+        done: false
+      }]
+    });
+  }
+
+  newTodoChanged(event) {
+    this.setState({
+      newTodo: event.target.value
+    });
+  }
+
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <h3>{this.state.message}</h3>
+      <form onSubmit={(event) => this.formSubmitted(event)}>
+      <label htmlFor='newTodo'>New ToDo</label>
+      <input onChange={(event) => this.newTodoChanged(event)} id='newTodo' name='newTodo' value={this.state.newTodo} />
+      <button type='submit'>Add Todo</button>
+      </form>
+      <ul>
+      {this.state.todos.map(todo => {
+        return (<li key={todo.title}>
+          <input type='checkbox' />{todo.title}</li>)
+      })}
+      </ul>
       </div>
     );
   }
