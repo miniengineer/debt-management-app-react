@@ -4,7 +4,7 @@ class TransactionList extends Component {
 
   renderTransactionList = () => {
     return this.props.transactionsToShow.map(transaction => {
-      return <li>{transaction.amount}</li>;
+      return <li>Transferred {transaction.amount} on {transaction.date}</li>;
     })
   }
 

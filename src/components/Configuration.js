@@ -15,7 +15,7 @@ class Configuration extends Component {
 
   submitInitialDebt(event) {
     this.setState({
-      debt: event.target.value
+      debt: Number(event.target.value)
     })
   }
 

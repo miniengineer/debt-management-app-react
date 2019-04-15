@@ -9,16 +9,14 @@ class App extends Component {
     super();
     this.state = {
       totalDebt: 0,
-      transactionList: [{
-        amount: null
-      }]
+      transactionList: []
     };
   }
 
   //set the initial value for totalDebt
   componentDidMount() {
     this.setState({
-      totalDebt: this.props.initialDebt
+      totalDebt: this.props.initialDebt,
     })
   }
 
@@ -26,10 +24,8 @@ class App extends Component {
  //getting inputted transaction from child component
   myCallback = (dataFromChild) => {
     this.setState({
-      transactionList: [...this.state.transactionList, {
-        amount: dataFromChild
-      }],
-      totalDebt: this.state.totalDebt - dataFromChild
+      transactionList: [...this.state.transactionList, dataFromChild],
+      totalDebt: this.state.totalDebt - dataFromChild.amount
     });
   }
 
