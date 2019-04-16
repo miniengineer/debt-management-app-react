@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import InputForm from './InputForm';
 import TransactionList from './TransactionList';
+import MyClock from './MyClock';
 
 
 class App extends Component {
@@ -33,9 +34,12 @@ class App extends Component {
   render() {
       return (
         <div>
+        <div>
+        <MyClock />
         <h2>TotalDebt: {this.props.initialCurrency} {this.state.totalDebt}</h2>
         <InputForm callBackFromParent = {this.myCallback}/>
         <TransactionList transactionsToShow = {this.state.transactionList} />
+        </div>
         </div>
       );
     }
