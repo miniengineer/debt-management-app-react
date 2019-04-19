@@ -9,6 +9,7 @@ class MyClock extends Component {
     }
   }
 
+
   currentTime() {
     this.setState({
       time: new Date()
