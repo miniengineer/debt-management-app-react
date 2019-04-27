@@ -23,10 +23,21 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   </head>
+
+
   <body>
+    <video autoplay loop id="myVideo">
+      <source src="video.mp4" type="video/mp4">
+    </video>
+
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <footer>
+      Copyright 2019 MiniApps Inc.
+    </footer>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -37,5 +48,23 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <style type="text/css">
+      #myVideo {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%; 
+        min-height: 100%;
+      }
+      #root {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        color: #f1f1f1;
+        width: 100%;
+        padding: 20px;
+      }
+    </style>
   </body>
 </html>

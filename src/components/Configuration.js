@@ -1,6 +1,12 @@
 import App from './App';
-
 import React, { Component } from 'react';
+import { AppBar, Toolbar, Typography, Button } from '@material-ui/core/';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import classNames from 'classnames';
+import ConfigurationInput from './ConfigurationInput';
+
+
 
 class Configuration extends Component {
 
@@ -12,6 +18,8 @@ class Configuration extends Component {
       isSubmitted: false
     };
   }
+
+
 
   submitInitialDebt(event) {
     this.setState({
@@ -37,11 +45,22 @@ class Configuration extends Component {
   renderConfiguration() {
       return (
         <div>
-        <h2>Please input your current debt</h2>
+        <AppBar position="static" color = "primary">
+        <Toolbar>
+          <Typography component="h4" variant="display2" color = "inherit" >
+            Configure Your App
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <h2>Please fill-in the following:</h2>
+      <ConfigurationInput></ConfigurationInput>
+
         <input type = 'text' onChange = {(event) => this.submitInitialDebt(event)}/>
         <h2>Please input your country's currency</h2>
         <input type = 'text' onChange = {(event) => this.submitCurrency(event)} />
-        <button onClick = {(event) => this.submitInitialValues(event)}>submit</button>
+        <Button variant="outlined" color="primary" onClick = {(event) => this.submitInitialValues(event)}>
+        Submit
+        </Button>
         </div>
       );
   }

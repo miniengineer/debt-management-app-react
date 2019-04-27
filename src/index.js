@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Configuration from './components/Configuration';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
+import Container from 'react-bootstrap/Container';
 
 ReactDOM.render(<Configuration />, document.getElementById('root'));
 
