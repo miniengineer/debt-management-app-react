@@ -1,12 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Configuration from './components/Configuration';
-import './index.css';
-import * as serviceWorker from './serviceWorker';
-import Container from 'react-bootstrap/Container';
+import React from "react";
+import ReactDOM from "react-dom";
+import Configuration from "./components/Configuration";
+import "./index.css";
+import Bootstrap from "bootstrap/dist/css/bootstrap.css";
+import * as serviceWorker from "./serviceWorker";
 
-ReactDOM.render(<Configuration />, document.getElementById('root'));
-
+ReactDOM.render(<Configuration />, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
