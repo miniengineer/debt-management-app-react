@@ -20,7 +20,12 @@ class DateInput extends React.Component {
       startDate: date
     });
 
-    let formattedDate = this.state.startDate.toLocaleDateString('en-US');
+    var options = { year: "numeric", month: "long", day: "numeric" };
+
+    let formattedDate = this.state.startDate.toLocaleDateString(
+      "en-US",
+      options
+    );
 
     this.props.callBackFromParent(formattedDate);
   }

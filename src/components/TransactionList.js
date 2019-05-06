@@ -1,21 +1,23 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class TransactionList extends Component {
-
   renderTransactionList = () => {
     return this.props.transactionsToShow.map(transaction => {
-      return <li>Transferred {transaction.amount} on {transaction.date}</li>;
-    })
-  }
+      return (
+        <li>
+          Transferred {transaction.amount} on {transaction.date}
+        </li>
+      );
+    });
+  };
 
   render() {
     return (
-      <div>
-      <ul>{this.renderTransactionList()}</ul>
-      </div>
+      <React.Fragment>
+        <ul>{this.renderTransactionList()}</ul>
+      </React.Fragment>
     );
   }
-
 }
 
 export default TransactionList;

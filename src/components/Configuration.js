@@ -36,7 +36,7 @@ class Configuration extends Component {
 
   renderConfiguration() {
     return (
-      <>
+      <React.Fragment>
         <section className="jumbotron text-center">
           <div className="container">
             <Navbar expand="lg" variant="dark" bg="dark">
@@ -77,19 +77,19 @@ class Configuration extends Component {
             </Form>
           </div>
         </section>
-      </>
+      </React.Fragment>
     );
   }
 
   render() {
     if (this.state.isSubmitted === true) {
       return (
-        <div>
+        <React.Fragment>
           <App
             initialCurrency={this.state.currency}
             initialDebt={this.state.debt}
           />
-        </div>
+        </React.Fragment>
       );
     } else {
       return <div>{this.renderConfiguration()}</div>;

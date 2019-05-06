@@ -8,7 +8,21 @@ class App extends Component {
     super();
     this.state = {
       totalDebt: 0,
-      transactionList: []
+      transactionList: [],
+      months: [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ]
     };
   }
 
@@ -21,8 +35,17 @@ class App extends Component {
 
   //getting inputted transaction from child component
   myCallback = dataFromChild => {
+    var newState = [...this.state.transactionList, dataFromChild];
+    newState.sort((a, b) => {
+      a.date = a.date.split(" ");
+      b.date = b.date.split(" ");
+      return (
+        this.state.months.indexOf(a.date[0]) -
+        this.state.months.indexOf(b.date[0])
+      );
+    });
     this.setState({
-      transactionList: [...this.state.transactionList, dataFromChild],
+      transactionList: newState,
       totalDebt: this.state.totalDebt - dataFromChild.amount
     });
   };
