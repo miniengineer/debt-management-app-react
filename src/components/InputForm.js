@@ -31,9 +31,9 @@ class InputForm extends Component {
       });
   }
 
-  getInputtedDay = (dataFromDateInput) => {
+  getInputtedDay = (selectedDate) => {
     this.setState({
-      date: dataFromDateInput
+      date: selectedDate
     })
   }
 
@@ -42,7 +42,7 @@ class InputForm extends Component {
       <div>
       <form onSubmit={(event) => this.onFormSubmitted(event)}>
       <input onChange={(event) => this.newTransaction(event)} id='newTransaction' name='newTransaction' value={this.state.newTransaction} />
-      <DateInput callBackFromParent = {this.getInputtedDay}/>
+      <DateInput callBackFromInputForm = {this.getInputtedDay}/>
       <button type='submit'>Add Transaction</button>
       </form>
       </div>

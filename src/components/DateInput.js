@@ -10,30 +10,27 @@ class DateInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      startDate: new Date()
+      selectedDate: new Date()
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(date) {
+    this.props.callBackFromInputForm(date);
+
     this.setState({
-      startDate: date
+      selectedDate: date
     });
+  }
 
-    var options = { year: "numeric", month: "long", day: "numeric" };
-
-    let formattedDate = this.state.startDate.toLocaleDateString(
-      "en-US",
-      options
-    );
-
-    this.props.callBackFromParent(formattedDate);
+  componentDidMount() {
+    this.props.callBackFromInputForm(this.state.selectedDate);
   }
 
   render() {
     return (
       <DatePicker
-        selected={this.state.startDate}
+        selected={this.state.selectedDate}
         onChange={this.handleChange}
       />
     );
