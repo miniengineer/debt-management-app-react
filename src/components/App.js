@@ -8,21 +8,7 @@ class App extends Component {
     super();
     this.state = {
       totalDebt: 0,
-      transactionList: [],
-      months: [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December"
-      ]
+      transactionList: []
     };
   }
 
@@ -34,31 +20,28 @@ class App extends Component {
   }
 
   //getting inputted transaction from child component
-  myCallback = dataFromChild => {
-    var newState = [...this.state.transactionList, dataFromChild];
-    newState.sort((a, b) => {
-      a.date = a.date.split(" ");
-      b.date = b.date.split(" ");
-      return (
-        this.state.months.indexOf(a.date[0]) -
-        this.state.months.indexOf(b.date[0])
-      );
-    });
+  onFormSubmitted = newTransaction => {
+    var newTransactionList = [...this.state.transactionList, newTransaction];
+    newTransactionList.sort((a, b) => a.date.getTime() - b.date.getTime());
     this.setState({
-      transactionList: newState,
-      totalDebt: this.state.totalDebt - dataFromChild.amount
+      transactionList: newTransactionList,
+      totalDebt: this.state.totalDebt - newTransaction.amount
     });
   };
 
   render() {
     return (
       <React.Fragment>
-        <MyClock />
-        <h2>
-          TotalDebt: {this.props.initialCurrency} {this.state.totalDebt}
-        </h2>
-        <InputForm callBackFromParent={this.myCallback} />
+      <section className="jumbotron text-center">
+        <div className="container">
+        <h3>The clock is ticking</h3> <MyClock />
+        <h4>
+          Your Total Debt is {this.props.initialCurrency} {this.state.totalDebt}
+        </h4>
+        <InputForm callBackFromParent={this.onFormSubmitted} />
         <TransactionList transactionsToShow={this.state.transactionList} />
+        </div>
+        </section>
       </React.Fragment>
     );
   }
