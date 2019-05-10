@@ -9,7 +9,7 @@ class Configuration extends Component {
     super();
     this.state = {
       debt: 0,
-      currency: "",
+      currency: "USD",
       isSubmitted: false
     };
   }
@@ -29,9 +29,13 @@ class Configuration extends Component {
   submitInitialValues(event) {
     event.preventDefault();
 
-    this.setState({
-      isSubmitted: true
-    });
+    if (isNaN(this.state.debt)) {
+      alert("Please enter a NUMBER");
+    } else {
+      this.setState({
+        isSubmitted: true
+      });
+    }
   }
 
   renderConfiguration() {
