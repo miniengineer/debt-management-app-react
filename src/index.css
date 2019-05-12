@@ -12,3 +12,7 @@ body {
 .jumbotron {
   margin: 6rem;
 }
+
+ul {
+  list-style: none;
+}
