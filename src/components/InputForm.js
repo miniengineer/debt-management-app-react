@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DateInput from './DateInput';
+import AlertDismissable from './AlertDismissable';
 
 class InputForm extends Component {
 
@@ -7,7 +8,8 @@ class InputForm extends Component {
     super();
     this.state = {
       newTransaction: '',
-      date: ''
+      date: '',
+      inputError: []
     };
   }
 
@@ -15,19 +17,33 @@ class InputForm extends Component {
   onFormSubmitted(event) {
     event.preventDefault();
 
-    const transaction = {amount: this.state.newTransaction, date: this.state.date};
+    if (this.state.newTransaction === "") {
+      this.setState({
+        inputError: ["Please enter a transaction number!!!!!!!"]
+      });
+    } else if (isNaN(this.state.newTransaction)) {
+      this.setState({
+        inputError: ["Please make sure you are entering a NUMBER!!!!!!!!!!!"]
+      });
+    } else if (this.state.date.getTime() > (new Date()).getTime()) {
+      this.setState({
+        inputError: ["YOU CAN NOT TRANSFER MONEY IN THE FUTURE!!!!!!!"]
+      });
+    } else {
+        const transaction = {amount: this.state.newTransaction, date: this.state.date};
 
-    this.props.callBackFromParent(transaction);
+        this.props.callBackFromParent(transaction);
 
-    //clear input form after submitted
-    this.setState({
-      newTransaction: ''
-    })
+        //clear input form after submitted
+        this.setState({
+          newTransaction: ''
+      })
+    }
   }
 
   newTransaction(event) {
       this.setState({
-        newTransaction: Number(event.target.value)
+        newTransaction: event.target.value
       });
   }
 
@@ -35,6 +51,12 @@ class InputForm extends Component {
     this.setState({
       date: selectedDate
     })
+  }
+
+  showError = () => {
+    if (this.state.inputError.length > 0) {
+      return <AlertDismissable errorType = {this.state.inputError} />;
+    }
   }
 
   render() {
@@ -45,6 +67,8 @@ class InputForm extends Component {
       <DateInput callBackFromInputForm = {this.getInputtedDay}/>
       <button type='submit'>Add Transaction</button>
       </form>
+      <br />
+      {this.showError()}
       </div>
     );
   }

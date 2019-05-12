@@ -8,9 +8,9 @@ class Configuration extends Component {
   constructor() {
     super();
     this.state = {
-      debt: 0,
+      debt: 100,
       currency: "USD",
-      isSubmitted: false
+      isSubmitted: true
     };
   }
 
