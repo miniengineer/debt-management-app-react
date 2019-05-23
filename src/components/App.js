@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import InputForm from "./InputForm";
 import TransactionList from "./TransactionList";
 import MyClock from "./MyClock";
+import ShowPeopleInSpace from "./ShowPeopleInSpace";
 
 class App extends Component {
   constructor() {
@@ -32,15 +33,17 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-      <section className="jumbotron text-center">
-        <div className="container">
-        <h3>The clock is ticking</h3> <MyClock />
-        <h4>
-          Your Total Debt is {this.props.initialCurrency} {this.state.totalDebt}
-        </h4>
-        <InputForm callBackFromParent={this.onFormSubmitted} />
-        <TransactionList transactionsToShow={this.state.transactionList} />
-        </div>
+        <section className="jumbotron text-center">
+          <div className="container">
+            <h3>The clock is ticking</h3> <MyClock />
+            <h4>
+              Your Total Debt is {this.props.initialCurrency}{" "}
+              {this.state.totalDebt}
+            </h4>
+            <InputForm callBackFromParent={this.onFormSubmitted} />
+            <TransactionList transactionsToShow={this.state.transactionList} />
+            <ShowPeopleInSpace />
+          </div>
         </section>
       </React.Fragment>
     );

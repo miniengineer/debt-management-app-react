@@ -7,6 +7,7 @@ body {
   font-weight: 400;
   line-height: 1.5;
   color: #212529;
+  max-height: 800px;
 }
 
 .jumbotron {
@@ -15,4 +16,30 @@ body {
 
 ul {
   list-style: none;
+}
+
+.button__container {
+  margin-top: 50px;
+  text-align: center;
+}
+.button {
+  background-color: rgb(66, 207, 85);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  height: 60px;
+  width: 200px;
+  margin-top: 10px;
+}
+
+.inputButton {
+  background-color: rgb(0, 162, 255);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  height: 30px;
+  width: 150px;
+  margin: 10px;
 }

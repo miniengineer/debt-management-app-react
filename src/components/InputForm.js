@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
-import DateInput from './DateInput';
-import AlertDismissable from './AlertDismissable';
+import React, { Component } from "react";
+import DateInput from "./DateInput";
+import AlertDismissable from "./AlertDismissable";
 
 class InputForm extends Component {
-
   constructor() {
     super();
     this.state = {
-      newTransaction: '',
-      date: '',
+      newTransaction: "",
+      date: "",
       inputError: []
     };
   }
@@ -25,54 +24,63 @@ class InputForm extends Component {
       this.setState({
         inputError: ["Please make sure you are entering a NUMBER!!!!!!!!!!!"]
       });
-    } else if (this.state.date.getTime() > (new Date()).getTime()) {
+    } else if (this.state.date.getTime() > new Date().getTime()) {
       this.setState({
         inputError: ["YOU CAN NOT TRANSFER MONEY IN THE FUTURE!!!!!!!"]
       });
     } else {
-        const transaction = {amount: this.state.newTransaction, date: this.state.date};
+      const transaction = {
+        amount: this.state.newTransaction,
+        date: this.state.date
+      };
 
-        this.props.callBackFromParent(transaction);
+      this.props.callBackFromParent(transaction);
 
-        //clear input form after submitted
-        this.setState({
-          newTransaction: ''
-      })
+      //clear input form after submitted
+      this.setState({
+        newTransaction: ""
+      });
     }
   }
 
   newTransaction(event) {
-      this.setState({
-        newTransaction: event.target.value
-      });
+    this.setState({
+      newTransaction: event.target.value
+    });
   }
 
-  getInputtedDay = (selectedDate) => {
+  getInputtedDay = selectedDate => {
     this.setState({
       date: selectedDate
-    })
-  }
+    });
+  };
 
   showError = () => {
     if (this.state.inputError.length > 0) {
-      return <AlertDismissable errorType = {this.state.inputError} />;
+      return <AlertDismissable errorType={this.state.inputError} />;
     }
-  }
+  };
 
   render() {
     return (
       <div>
-      <form onSubmit={(event) => this.onFormSubmitted(event)}>
-      <input onChange={(event) => this.newTransaction(event)} id='newTransaction' name='newTransaction' value={this.state.newTransaction} />
-      <DateInput callBackFromInputForm = {this.getInputtedDay}/>
-      <button type='submit'>Add Transaction</button>
-      </form>
-      <br />
-      {this.showError()}
+        <form onSubmit={event => this.onFormSubmitted(event)}>
+          <input
+            onChange={event => this.newTransaction(event)}
+            id="newTransaction"
+            name="newTransaction"
+            value={this.state.newTransaction}
+          />
+          <DateInput callBackFromInputForm={this.getInputtedDay} />
+          <button className="inputButton" type="submit">
+            Add Transaction
+          </button>
+        </form>
+        <br />
+        {this.showError()}
       </div>
     );
   }
-
 }
 
 export default InputForm;
