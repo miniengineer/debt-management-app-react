@@ -3,13 +3,15 @@ import InputForm from "./InputForm";
 import TransactionList from "./TransactionList";
 import MyClock from "./MyClock";
 import ShowPeopleInSpace from "./ShowPeopleInSpace";
+import axios from "axios";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       totalDebt: 0,
-      transactionList: []
+      transactionList: [],
+      peopleInSpace: []
     };
   }
 
@@ -30,6 +32,16 @@ class App extends Component {
     });
   };
 
+  //API call to get the names of astronauts
+  getAstronautsNames() {
+    axios.get("https://www.mocky.io/v2/5ce645ea3300004a007313ae").then(data => {
+      this.setState({
+        peopleInSpace: data.data.people
+      });
+      console.log(this.state.peopleInSpace);
+    });
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -42,7 +54,19 @@ class App extends Component {
             </h4>
             <InputForm callBackFromParent={this.onFormSubmitted} />
             <TransactionList transactionsToShow={this.state.transactionList} />
-            <ShowPeopleInSpace />
+            <div className="button__container">
+              <h4>
+                And while you're figuring out how to repay your debts, some
+                people are exploring the universe!
+              </h4>
+              <button
+                onClick={event => this.getAstronautsNames(event)}
+                className="button"
+              >
+                Show me these lucky bastards!
+              </button>
+            </div>
+            <ShowPeopleInSpace peopleInSpace={this.state.peopleInSpace} />
           </div>
         </section>
       </React.Fragment>
