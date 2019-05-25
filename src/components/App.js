@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import InputForm from "./InputForm";
 import TransactionList from "./TransactionList";
 import MyClock from "./MyClock";
-import ShowPeopleInSpace from "./ShowPeopleInSpace";
+import CurrencyRates from "./CurrencyRates";
 import axios from "axios";
+import { Container, Row, Col } from "react-bootstrap";
 
 class App extends Component {
   constructor() {
@@ -11,14 +12,18 @@ class App extends Component {
     this.state = {
       totalDebt: 0,
       transactionList: [],
-      peopleInSpace: []
+      currencyRates: null
     };
   }
 
   //set the initial value for totalDebt
   componentDidMount() {
-    this.setState({
-      totalDebt: this.props.initialDebt
+    //API call to get currency exchange rate
+    axios.get("https://api.exchangeratesapi.io/latest?base=USD").then(data => {
+      this.setState({
+        currencyRates: data.data,
+        totalDebt: this.props.initialDebt
+      });
     });
   }
 
@@ -32,44 +37,28 @@ class App extends Component {
     });
   };
 
-  //API call to get the names of astronauts
-  getAstronautsNames() {
-    axios.get("https://www.mocky.io/v2/5ce645ea3300004a007313ae").then(data => {
-      this.setState({
-        peopleInSpace: data.data.people
-      });
-      console.log(this.state.peopleInSpace);
-    });
-  }
-
   render() {
     return (
-      <React.Fragment>
+      <Container>
         <section className="jumbotron text-center">
-          <div className="container">
-            <h3>The clock is ticking</h3> <MyClock />
-            <h4>
-              Your Total Debt is {this.props.initialCurrency}{" "}
-              {this.state.totalDebt}
-            </h4>
-            <InputForm callBackFromParent={this.onFormSubmitted} />
-            <TransactionList transactionsToShow={this.state.transactionList} />
-            <div className="button__container">
-              <h4>
-                And while you're figuring out how to repay your debts, some
-                people are exploring the universe!
-              </h4>
-              <button
-                onClick={event => this.getAstronautsNames(event)}
-                className="button"
-              >
-                Show me these lucky bastards!
-              </button>
-            </div>
-            <ShowPeopleInSpace peopleInSpace={this.state.peopleInSpace} />
-          </div>
+          <Row>
+            <Col>
+              <CurrencyRates currencyRates={this.state.currencyRates} />
+            </Col>
+            <Col>
+              <h4>The clock is ticking</h4> <MyClock />
+              <h5>
+                Total Debt {this.props.initialCurrency} {this.state.totalDebt}
+              </h5>
+              <InputForm callBackFromParent={this.onFormSubmitted} />
+              <TransactionList
+                transactionsToShow={this.state.transactionList}
+              />
+            </Col>
+          </Row>
+          <footer>Copyright 2019 MiniApps Inc.</footer>
         </section>
-      </React.Fragment>
+      </Container>
     );
   }
 }

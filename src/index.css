@@ -43,3 +43,13 @@ ul {
   width: 150px;
   margin: 10px;
 }
+
+footer {
+  margin-top: 50px;
+}
+
+@media (min-width: 576px) {
+  section.jumbotron.text-center {
+    padding: 2rem 4rem;
+  }
+}
