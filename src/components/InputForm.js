@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import DateInput from "./DateInput";
 import AlertDismissable from "./AlertDismissable";
+import axios from "axios";
 
 class InputForm extends Component {
   constructor() {
@@ -28,11 +29,19 @@ class InputForm extends Component {
       this.setState({
         inputError: ["YOU CAN NOT TRANSFER MONEY IN THE FUTURE!!!!!!!"]
       });
+      //creating an object to send it to parent APP component
     } else {
       const transaction = {
         amount: this.state.newTransaction,
         date: this.state.date
       };
+
+      //send inputted transaction to DB
+
+      axios.post("https://5cfca797a954a70014032906.mockapi.io/transactions", {
+        amount: this.state.newTransaction,
+        date: this.state.date
+      });
 
       this.props.callBackFromParent(transaction);
 
@@ -55,6 +64,7 @@ class InputForm extends Component {
     });
   };
 
+  //show alert in case input is empty
   showError = () => {
     if (this.state.inputError.length > 0) {
       return <AlertDismissable errorType={this.state.inputError} />;
