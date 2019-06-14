@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { ReactComponent as DeleteImg } from "../Images/delete.svg";
 
 class TransactionList extends Component {
   renderTransactionList = () => {
@@ -10,14 +11,16 @@ class TransactionList extends Component {
       if (currentMonth[0] !== previousMonth) {
         previousMonth = currentMonth[0];
         return (
-          <li key = {i}>
-          <h3>{currentMonth[0]}</h3>
+          <li key={i}>
+            <h3>{currentMonth[0]}</h3>
+            <DeleteImg />
             Transferred {transaction.amount} on {formattedDate}
           </li>
         );
       } else {
         return (
-          <li key = {i}>
+          <li key={i}>
+            <DeleteImg />
             Transferred {transaction.amount} on {formattedDate}
           </li>
         );
@@ -28,7 +31,7 @@ class TransactionList extends Component {
   render() {
     return (
       <React.Fragment>
-      <ul>{this.renderTransactionList()}</ul>
+        <ul>{this.renderTransactionList()}</ul>
       </React.Fragment>
     );
   }
