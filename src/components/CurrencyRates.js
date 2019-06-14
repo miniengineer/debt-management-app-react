@@ -31,11 +31,13 @@ class CurrencyRates extends Component {
               <td>
                 {parseFloat(this.props.currencyRates.rates.GBP).toFixed(2)}
               </td>
-              <tr />
             </tr>
-            <td>RUB</td>
-            <td>{parseFloat(this.props.currencyRates.rates.RUB).toFixed(2)}</td>
-            <tr />
+            <tr>
+              <td>RUB</td>
+              <td>
+                {parseFloat(this.props.currencyRates.rates.RUB).toFixed(2)}
+              </td>
+            </tr>
           </tbody>
         </Table>
       </div>
