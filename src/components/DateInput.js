@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -6,7 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 // CSS Modules, react-datepicker-cssmodules.css
 // import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
-class DateInput extends React.Component {
+export default class DateInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -36,5 +36,3 @@ class DateInput extends React.Component {
     );
   }
 }
-
-export default DateInput;

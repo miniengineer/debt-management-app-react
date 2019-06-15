@@ -3,7 +3,7 @@ import DateInput from "./DateInput";
 import AlertDismissable from "./AlertDismissable";
 import axios from "axios";
 
-class InputForm extends Component {
+export default class InputForm extends Component {
   constructor() {
     super();
     this.state = {
@@ -92,5 +92,3 @@ class InputForm extends Component {
     );
   }
 }
-
-export default InputForm;

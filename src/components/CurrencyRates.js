@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Table from "react-bootstrap/Table";
 
-class CurrencyRates extends Component {
+export default class CurrencyRates extends Component {
   render() {
     if (this.props.currencyRates == null) {
       return <div>Loading...</div>;
@@ -44,4 +44,3 @@ class CurrencyRates extends Component {
     );
   }
 }
-export default CurrencyRates;

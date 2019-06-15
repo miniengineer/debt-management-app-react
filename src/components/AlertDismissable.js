@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import Alert from 'react-bootstrap/Alert';
 
 
-class AlertDismissable extends Component {
+export default class AlertDismissable extends Component {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       show: true
@@ -25,5 +25,3 @@ class AlertDismissable extends Component {
   }
 
 }
-
-export default AlertDismissable;

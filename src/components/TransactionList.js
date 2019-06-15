@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { ReactComponent as DeleteImg } from "../Images/delete.svg";
 
-class TransactionList extends Component {
+export default class TransactionList extends Component {
+
   renderTransactionList = () => {
     let previousMonth = "";
     let options = { month: "long", day: "numeric", year: "numeric" };
@@ -13,14 +14,14 @@ class TransactionList extends Component {
         return (
           <li key={i}>
             <h3>{currentMonth[0]}</h3>
-            <DeleteImg />
+            <DeleteImg onClick = {() => this.props.deleteTransaction(transaction)} />
             Transferred {transaction.amount} on {formattedDate}
           </li>
         );
       } else {
         return (
           <li key={i}>
-            <DeleteImg />
+            <DeleteImg onClick = {event => this.props.deleteTransaction(transaction)} />
             Transferred {transaction.amount} on {formattedDate}
           </li>
         );
@@ -36,5 +37,3 @@ class TransactionList extends Component {
     );
   }
 }
-
-export default TransactionList;

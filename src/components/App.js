@@ -6,7 +6,7 @@ import CurrencyRates from "./CurrencyRates";
 import axios from "axios";
 import { Container, Row, Col } from "react-bootstrap";
 
-class App extends Component {
+export default class App extends Component {
   constructor() {
     super();
     this.state = {
@@ -14,6 +14,8 @@ class App extends Component {
       transactionList: [],
       currencyRates: null
     };
+
+    this.deleteTransaction = this.deleteTransaction.bind(this);
   }
 
   //set the initial value for totalDebt
@@ -37,6 +39,15 @@ class App extends Component {
     });
   };
 
+  deleteTransaction(transactionToDelete) {
+    let afterDeleted = this.state.transactionList.filter(transaction => {
+      return transaction !== transactionToDelete;
+    });
+    this.setState({
+      transactionList: afterDeleted
+    })
+  }
+
   render() {
     return (
       <Container>
@@ -50,9 +61,10 @@ class App extends Component {
               <h5>
                 Total Debt {this.props.initialCurrency} {this.state.totalDebt}
               </h5>
-              <InputForm callBackFromParent={this.onFormSubmitted} />
+              <InputForm callBackFromParent = {this.onFormSubmitted} />
               <TransactionList
-                transactionsToShow={this.state.transactionList}
+                transactionsToShow = {this.state.transactionList}
+                deleteTransaction = {this.deleteTransaction}
               />
             </Col>
           </Row>
@@ -62,5 +74,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;

@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
 import Form from "react-bootstrap/Form";
 
-class Configuration extends Component {
+export default class Configuration extends Component {
   constructor() {
     super();
     this.state = {
@@ -100,5 +100,3 @@ class Configuration extends Component {
     }
   }
 }
-
-export default Configuration;
