@@ -47,10 +47,14 @@ export default class App extends Component {
     });
   };
 
+  //envokes from transaction list component, sending a transaction to be deleted
+  //and refreshing the state
   deleteTransaction(transactionToDelete) {
     let afterDeleted = this.state.transactionList.filter(transaction => {
       return transaction !== transactionToDelete;
     });
+
+    //refresh the state after deleting a transaction
     this.setState({
       transactionList: afterDeleted
     });
