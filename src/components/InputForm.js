@@ -36,13 +36,6 @@ export default class InputForm extends Component {
         date: this.state.date
       };
 
-      //send inputted transaction to DB
-
-      axios.post("https://5cfca797a954a70014032906.mockapi.io/transactions", {
-        amount: this.state.newTransaction,
-        date: this.state.date
-      });
-
       this.props.callBackFromParent(transaction);
 
       //clear input form after submitted

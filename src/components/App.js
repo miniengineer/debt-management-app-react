@@ -33,6 +33,14 @@ export default class App extends Component {
   onFormSubmitted = newTransaction => {
     var newTransactionList = [...this.state.transactionList, newTransaction];
     newTransactionList.sort((a, b) => a.date.getTime() - b.date.getTime());
+
+    //edit the date and send inputted transaction data to DB
+    let dateOptions = { month: "long", day: "numeric", year: "numeric" };
+    axios.post("https://5cdfa066fc90670014267af7.mockapi.io/transactions", {
+      amount: newTransaction.amount,
+      date: newTransaction.date.toLocaleDateString("en-US", dateOptions)
+    });
+
     this.setState({
       transactionList: newTransactionList,
       totalDebt: this.state.totalDebt - newTransaction.amount
@@ -45,7 +53,7 @@ export default class App extends Component {
     });
     this.setState({
       transactionList: afterDeleted
-    })
+    });
   }
 
   render() {
@@ -61,10 +69,10 @@ export default class App extends Component {
               <h5>
                 Total Debt {this.props.initialCurrency} {this.state.totalDebt}
               </h5>
-              <InputForm callBackFromParent = {this.onFormSubmitted} />
+              <InputForm callBackFromParent={this.onFormSubmitted} />
               <TransactionList
-                transactionsToShow = {this.state.transactionList}
-                deleteTransaction = {this.deleteTransaction}
+                transactionsToShow={this.state.transactionList}
+                deleteTransaction={this.deleteTransaction}
               />
             </Col>
           </Row>
