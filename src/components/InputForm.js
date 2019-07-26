@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import DateInput from "./DateInput";
 import AlertDismissable from "./AlertDismissable";
-import axios from "axios";
 
 export default class InputForm extends Component {
   constructor() {

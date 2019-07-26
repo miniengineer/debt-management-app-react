@@ -3,7 +3,6 @@ import InputForm from "./InputForm";
 import TransactionList from "./TransactionList";
 import MyClock from "./MyClock";
 import CurrencyRates from "./CurrencyRates";
-import axios from "axios";
 import { Container, Row, Col } from "react-bootstrap";
 
 export default class App extends Component {
@@ -33,13 +32,6 @@ export default class App extends Component {
   onFormSubmitted = newTransaction => {
     var newTransactionList = [...this.state.transactionList, newTransaction];
     newTransactionList.sort((a, b) => a.date.getTime() - b.date.getTime());
-
-    //edit the date and send inputted transaction data to DB
-    let dateOptions = { month: "long", day: "numeric", year: "numeric" };
-    axios.post("https://5cdfa066fc90670014267af7.mockapi.io/transactions", {
-      amount: newTransaction.amount,
-      date: newTransaction.date.toLocaleDateString("en-US", dateOptions)
-    });
 
     this.setState({
       transactionList: newTransactionList,
