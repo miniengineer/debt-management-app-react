@@ -3,6 +3,7 @@ import InputForm from "./InputForm";
 import TransactionList from "./TransactionList";
 import MyClock from "./MyClock";
 import CurrencyRates from "./CurrencyRates";
+import axios from "axios";
 import { Container, Row, Col } from "react-bootstrap";
 
 export default class App extends Component {
