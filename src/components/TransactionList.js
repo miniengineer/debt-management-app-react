@@ -4,11 +4,10 @@ import { ReactComponent as DeleteImg } from "../Images/delete.svg";
 export default class TransactionList extends Component {
   renderTransactionList = () => {
     let previousMonth = "";
-    let dateOptions = { month: "long", day: "numeric", year: "numeric" };
     return this.props.transactionsToShow.map((transaction, i) => {
       let formattedDate = transaction.date.toLocaleDateString(
         "en-US",
-        dateOptions
+        { month: "long", day: "numeric", year: "numeric" }
       );
       let currentMonth = formattedDate.split(" ");
       if (currentMonth[0] !== previousMonth) {
