@@ -5,6 +5,7 @@ export default class TransactionList extends Component {
   renderTransactionList = () => {
     let previousMonth = "";
     return this.props.transactionsToShow.map((transaction, i) => {
+      console.log(transaction.date);
       let formattedDate = transaction.date.toLocaleDateString(
         "en-US",
         { month: "long", day: "numeric", year: "numeric" }

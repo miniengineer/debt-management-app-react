@@ -31,6 +31,11 @@ export default class App extends Component {
 
   //getting inputted transaction from child component
   onFormSubmitted = newTransaction => {
+    axios.post("https://rocky-ocean-72205.herokuapp.com/transactions", {
+      "date": newTransaction.date.toISOString(),
+      "amount": newTransaction.amount,
+      "currency": this.props.initialCurrency
+    });
     var newTransactionList = [...this.state.transactionList, newTransaction];
     newTransactionList.sort((a, b) => a.date.getTime() - b.date.getTime());
 
