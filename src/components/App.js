@@ -27,16 +27,28 @@ export default class App extends Component {
         totalDebt: this.props.initialDebt
       });
     });
+    axios.get("https://rocky-ocean-72205.herokuapp.com/transactions").then((response) => {
+      this.setState({
+        transactionList: response.data.reverse()
+      });
+    });
   }
 
   //getting inputted transaction from child component
   onFormSubmitted = newTransaction => {
-    var newTransactionList = [...this.state.transactionList, newTransaction];
-    newTransactionList.sort((a, b) => a.date.getTime() - b.date.getTime());
+    //send new transaction to db
+    axios.post("https://rocky-ocean-72205.herokuapp.com/transactions", {
+      "date": newTransaction.date.toISOString(),
+      "amount": newTransaction.amount,
+      "currency": this.props.initialCurrency
+    }).then((response) => {
+      //get updated transaction list from db
+      let newTransactionList = [response.data, ...this.state.transactionList];
 
-    this.setState({
-      transactionList: newTransactionList,
-      totalDebt: this.state.totalDebt - newTransaction.amount
+      this.setState({
+        transactionList: newTransactionList,
+        totalDebt: this.state.totalDebt - newTransaction.amount
+      });
     });
   };
 
@@ -68,7 +80,7 @@ export default class App extends Component {
               </h5>
               <InputForm callBackFromParent={this.onFormSubmitted} />
               <TransactionList
-                transactionsToShow={this.state.transactionList}
+                transactionsToShow={this.state.transactionList.slice(0, 5)}
                 deleteTransaction={this.deleteTransaction}
               />
             </Col>
