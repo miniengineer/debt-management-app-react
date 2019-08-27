@@ -24,56 +24,28 @@ export default class TransactionList extends Component {
       let currentMonth = formattedDate.split(" ");
       if (currentMonth[0] !== previousMonth) {
         previousMonth = currentMonth[0];
-        return ( <
-          li key = {
-            i
-          } >
-          <
-          h3 > {
-            currentMonth[0]
-          } < /h3> <
-          DeleteImg onClick = {
-            () => this.props.deleteTransaction(transaction)
-          }
-          />
-          Transferred {
-            transaction.amount
-          }
-          on {
-            formattedDate
-          } <
-          /li>
+        return ( 
+          <li key = {i} >
+           <h3 > {currentMonth[0]} < /h3> 
+           < DeleteImg onClick = {() => this.props.deleteTransaction(transaction)} />
+           Transferred {transaction.amount} on {formattedDate} 
+          </li>
         );
       } else {
-        return ( <
-          li key = {
-            i
-          } >
-          <
-          DeleteImg onClick = {
-            event => this.props.deleteTransaction(transaction)
-          }
-          />
-          Transferred {
-            transaction.amount
-          }
-          on {
-            formattedDate
-          } <
-          /li>
+        return ( 
+          <li key = {i}>
+          <DeleteImg onClick = {event => this.props.deleteTransaction(transaction)} />
+          Transferred {transaction.amount} on {formattedDate} </li>
         );
       }
     });
   };
 
   render() {
-    return ( <
-      React.Fragment >
-      <
-      ul > {
-        this.renderTransactionList()
-      } < /ul> <
-      /React.Fragment>
+    return ( 
+      <React.Fragment>
+       <ul> {this.renderTransactionList()} </ul> 
+      </React.Fragment>
     );
   }
 }
