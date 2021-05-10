@@ -6,7 +6,7 @@
     "@babel/runtime": "^7.4.3",
     "axios": "0.18.1",
     "bootstrap": "4.3.1",
-    "lodash": "^4.17.14",
+    "lodash": "^4.17.21",
     "react": "^16.8.6",
     "react-bootstrap": "1.0.0-beta.8",
     "react-clock": "^2.3.0",
